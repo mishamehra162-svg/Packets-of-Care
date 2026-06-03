@@ -364,11 +364,11 @@
     <div class="stats-row">
       <div class="stat-card">
         <div class="stat-label">Packets Given</div>
-        <div class="stat-number" data-target="0" id="counter-packets">0</div>
+        <div class="stat-number" data-target="128" id="counter-packets">0</div>
       </div>
       <div class="stat-card">
         <div class="stat-label">Kilograms Shared</div>
-        <div class="stat-number" data-target="0" id="counter-kg">0</div>
+        <div class="stat-number" data-target="256" id="counter-kg">0</div>
       </div>
     </div>
   </div>
@@ -771,8 +771,8 @@ let countersStarted = false;
 new IntersectionObserver(entries => {
   if (entries[0].isIntersecting && !countersStarted) {
     countersStarted = true;
-    animateCounter(document.getElementById('counter-packets'), 128, 1800);
-    animateCounter(document.getElementById('counter-kg'), 256, 1800);
+    animateCounter(document.getElementById('counter-packets'), 0, 1800);
+    animateCounter(document.getElementById('counter-kg'), 0, 1800);
   }
 }, { threshold: 0.3 }).observe(document.getElementById('home'));
 
