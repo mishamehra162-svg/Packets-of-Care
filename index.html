@@ -705,12 +705,15 @@
 const UPDATES = [
   { id:1, title:"First Distribution Day", date:"12 March 2026", category:"Distribution Update",
     summary:"25 packets of rice and lentils were organized and distributed. The first step in understanding how small-scale food support can make a real difference.",
+    full:"25 packets of rice and lentils were organized and distributed on the first day. Write your full post here — as much detail as you'd like about where you went, who you met, and what the experience was like.",
     thumbClass:"thumb-dist", catClass:"cat-dist" },
   { id:2, title:"Why I Started This Project", date:"5 March 2026", category:"Essay",
     summary:"A personal reflection on why food insecurity is a deeply human issue and how this project came to life as a personal initiative.",
+    full:"Write your full essay here. Share the story of how this project came to life, what motivated you, and what you hope it becomes.",
     thumbClass:"thumb-essay", catClass:"cat-essay" },
   { id:3, title:"Week One: What I Learned", date:"20 March 2026", category:"Reflection",
     summary:"After the first week, the simplicity of a rice and lentil packet carries unexpected weight. This is what I took away from those first conversations.",
+    full:"Write your full reflection here. What surprised you? What was harder or easier than expected? What will you carry forward?",
     thumbClass:"thumb-reflect", catClass:"cat-reflect" }
 ];
 
@@ -735,7 +738,7 @@ function renderUpdates(cat) {
         </div>
         <h3>${u.title}</h3>
         <p>${u.summary}</p>
-        <a href="#updates" class="read-more">Read More &rarr;</a>
+        <a href="#" class="read-more" onclick="expandPost(${u.id}); return false;">Read More &rarr;</a>
       </div>
     </div>`;
   }).join('');
@@ -786,7 +789,40 @@ document.getElementById('hamburger').addEventListener('click', () => {
 document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => {
   document.getElementById('nav-links').classList.remove('open');
 }));
+function expandPost(id) {
+  const post = UPDATES.find(u => u.id === id);
+  document.getElementById('post-overlay').innerHTML = `
+    <div class="post-modal">
+      <button class="post-close" onclick="document.getElementById('post-overlay').style.display='none'">✕ Close</button>
+      <div class="section-tag">${post.category}</div>
+      <h2>${post.title}</h2>
+      <p class="update-date" style="margin-bottom:1.4rem;">${post.date}</p>
+      <p style="font-size:0.97rem;line-height:1.85;color:#444;">${post.full}</p>
+    </div>`;
+  document.getElementById('post-overlay').style.display = 'flex';
+}
 
 </script>
+<div id="post-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.65); z-index:9999; align-items:center; justify-content:center; padding:20px;" onclick="if(event.target===this)this.style.display='none'">
+</div>
+
+<style>
+  .post-modal {
+    background: var(--cream); border: 3px solid var(--black);
+    border-radius: 6px; padding: 2.4rem 2.8rem;
+    max-width: 680px; width: 100%; max-height: 85vh;
+    overflow-y: auto; position: relative;
+  }
+  .post-modal h2 { margin-bottom: 0.3rem; }
+  .post-close {
+    position: absolute; top: 1rem; right: 1rem;
+    background: var(--black); color: var(--white);
+    border: none; border-radius: 3px;
+    font-family: var(--font-body); font-weight: 700;
+    font-size: 0.75rem; letter-spacing: 1px;
+    padding: 0.4rem 0.8rem; cursor: pointer;
+  }
+  .post-close:hover { background: var(--olive); }
+</style>
 </body>
 </html>
