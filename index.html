@@ -235,34 +235,7 @@
     .involve-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; align-items: start; margin-top: 2rem; }
     .involve-left p { font-size: 0.98rem; line-height: 1.8; color: var(--black); margin-bottom: 1.2rem; }
     .involve-illo svg { width: 100%; max-width: 220px; }
-    .involve-form { display: flex; flex-direction: column; gap: 14px; }
-    .form-group { display: flex; flex-direction: column; gap: 5px; }
-    .form-group label { font-weight: 700; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; color: var(--black); }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      background: var(--white); border: 2.5px solid var(--black);
-      border-radius: 3px; padding: 0.7rem 0.9rem;
-      font-family: var(--font-body); font-size: 0.95rem;
-      color: var(--black); outline: none;
-      transition: box-shadow 0.15s;
-    }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus { box-shadow: 3px 3px 0 var(--black); }
-    .form-group textarea { resize: vertical; min-height: 90px; }
-    .radio-row { display: flex; gap: 16px; flex-wrap: wrap; }
-    .radio-label { display: flex; align-items: center; gap: 6px; font-size: 0.9rem; cursor: pointer; }
-    .radio-label input[type="radio"] { accent-color: var(--olive); width: 16px; height: 16px; }
-    .btn-submit {
-      background: var(--black); color: var(--yellow);
-      border: 2.5px solid var(--black); border-radius: 3px;
-      padding: 0.85rem 2rem; font-family: var(--font-body);
-      font-weight: 700; font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase;
-      cursor: pointer; transition: transform 0.15s, box-shadow 0.15s;
-      align-self: flex-start;
-    }
-    .btn-submit:hover { transform: translate(-2px,-2px); box-shadow: 4px 4px 0 rgba(0,0,0,0.4); }
+    .involve-form { display: flex; flex-direction: column; }
 
     /* UPDATES */
     #updates { background: var(--yellow); border-bottom: 3px solid var(--black); }
@@ -660,39 +633,16 @@
         </div>
       </div>
       <div class="involve-form reveal">
-        <form onsubmit="handleFormSubmit(event)">
-          <div class="form-group">
-            <label for="fname">Your Name</label>
-            <input type="text" id="fname" name="name" placeholder="Your name" required />
-          </div>
-          <div class="form-group">
-            <label for="femail">Email Address</label>
-            <input type="email" id="femail" name="email" placeholder="you@example.com" required />
-          </div>
-          <div class="form-group">
-            <label for="frole">I Want To</label>
-            <select id="frole" name="role" required>
-              <option value="" disabled selected>Select an option</option>
-              <option>Volunteer for distribution</option>
-              <option>Suggest a distribution location</option>
-              <option>Share feedback</option>
-              <option>Donate food packets</option>
-              <option>Ask a question</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="fmsg">Message</label>
-            <textarea id="fmsg" name="message" placeholder="Tell us more..."></textarea>
-          </div>
-          <div class="form-group">
-            <label>Permission to contact you?</label>
-            <div class="radio-row">
-              <label class="radio-label"><input type="radio" name="contact" value="yes" required /> Yes, please reach out</label>
-              <label class="radio-label"><input type="radio" name="contact" value="no" /> No, just sharing</label>
-            </div>
-          </div>
-          <button type="submit" class="btn-submit">Submit</button>
-        </form>
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSegSKj9M1LerHMwRxOB7Ikewhno0tybKEGtfQ2LDOmR9uoeiQ/viewform?embedded=true"
+          width="100%"
+          height="1243"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0"
+          style="border: 2.5px solid var(--black); border-radius: 3px; display: block;">
+          Loading…
+        </iframe>
       </div>
     </div>
   </div>
@@ -837,14 +787,6 @@ document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click
   document.getElementById('nav-links').classList.remove('open');
 }));
 
-function handleFormSubmit(e) {
-  e.preventDefault();
-  const btn = e.target.querySelector('.btn-submit');
-  btn.textContent = 'Submitted. Thank you.';
-  btn.style.background = '#3D4A1A';
-  btn.disabled = true;
-  e.target.reset();
-}
 </script>
 </body>
 </html>
